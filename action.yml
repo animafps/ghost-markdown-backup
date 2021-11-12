@@ -11,7 +11,7 @@ inputs:
   version:
     description: 'API version'
     required: false
-    default: 'v4'
+    default: 'canary'
 runs:
   using: 'node12'
   main: 'dist/index.js'

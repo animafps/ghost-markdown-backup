@@ -1,5 +1,6 @@
 import * as core from '@actions/core'
 import GhostContentAPI from '@tryghost/content-api'
+import type {PostOrPage} from '@tryghost/content-api'
 import exec from '@actions/exec'
 import fs from 'fs-extra'
 import path from 'path'
@@ -8,15 +9,15 @@ import yaml from 'js-yaml'
 const api = new GhostContentAPI({
   url: core.getInput('url'),
   key: core.getInput('key'),
-  version: core.getInput('version')
+  version: core.getInput('version') as 'v2' | 'v3' | 'canary'
 })
 
 const createMdFilesFromGhost = async (): Promise<unknown> => {
   // fetch the posts from the Ghost Content API
-  const posts = await api.posts.browse({include: 'tags,authors'})
+  const posts = await api.posts.browse({include: ['tags', 'authors']})
 
   return Promise.all(
-    posts.map(async (post: {html: unknown; slug: unknown}) => {
+    posts.map(async (post: PostOrPage) => {
       // Save the content separate and delete it from our post object, as we'll create
       // the frontmatter properties for every property that is left
       const content = post.html
