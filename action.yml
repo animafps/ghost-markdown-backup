@@ -1,11 +1,17 @@
-name: 'Your name here'
-description: 'Provide a description here'
-author: 'Your name or organization here'
+name: 'Ghost Markdown Backup'
+description: 'Automatically backs up posts from a Ghost instance to markdown through the Ghost content API'
+author: 'animafps'
 inputs:
-  milliseconds: # change this
+  url:
+    description: 'URL of the Ghost API'
     required: true
-    description: 'input description here'
-    default: 'default value if applicable'
+  key:
+    description: 'Ghost API key'
+    required: true
+  version:
+    description: 'API version'
+    required: false
+    default: 'v4'
 runs:
   using: 'node12'
   main: 'dist/index.js'
