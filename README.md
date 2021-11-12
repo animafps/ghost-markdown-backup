@@ -12,12 +12,11 @@ jobs:
   backup:
     runs-on: ubuntu-latest
     name: Backup Ghost posts to markdown
-
     steps:
-        uses: animafps/ghost-markdown-backup@v1
+      - uses: animafps/ghost-markdown-backup@v1
         with:
-          url:
-          key:
-          version:
+         url: 
+         key:
+         version:
 
 ```
