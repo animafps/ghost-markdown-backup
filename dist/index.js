@@ -51,7 +51,7 @@ const api = new content_api_1.default({
 });
 const createMdFilesFromGhost = () => __awaiter(void 0, void 0, void 0, function* () {
     // fetch the posts from the Ghost Content API
-    const posts = yield api.posts.browse({ include: 'tags,authors' });
+    const posts = yield api.posts.browse({ include: ['tags', 'authors'] });
     return Promise.all(posts.map((post) => __awaiter(void 0, void 0, void 0, function* () {
         // Save the content separate and delete it from our post object, as we'll create
         // the frontmatter properties for every property that is left
